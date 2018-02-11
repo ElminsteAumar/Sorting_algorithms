@@ -1,34 +1,25 @@
-def mergeSort(alist) :
-  if len(alist) > 1 :
-    mid = len(alist)//2
-    lefthalf = alist[:mid]
-    righthalf = alist[mid:]
+def merge(L, R):
+  array = []
+  i, j = 0, 0
+  while i < len(L) and j < len(R):
+    if L[i] <= R[j]:
+      array.append(L[i])
+      i += 1
+    else:
+      array.append(R[j])
+      j += 1
+  array += L[i:]
+  array += R[j:]
+  return array
 
-    mergeSort(lefthalf)
-    mergeSort(righthalf)
-
-    i = 0
-    j =0 
-    k = 0
-    while i < len(lefthalf) and j < len(righthalf) :
-      if lefthalf[i] < righthalf[j]:
-        alist[k] = lefthalf[i]
-        i = i + 1
-      else :
-        alist[k] = righthalf[j]
-        j = j + 1
-      k = k + 1
-
-    while i < len(lefthalf) :
-      alist[k] = lefthalf[i]
-      i = i + 1
-      k = k + 1
-
-    while j < len(righthalf) :
-      alist[k] = righthalf[j]
-      j = j + 1
-      k = k + 1
-
-array = [1,52,24,2,62,6,8,2,7,1,8]
-mergeSort(array)
-print(array)
+def mergesort(array):
+  if len(array) > 1:
+    q = len(array) // 2
+    L = mergesort(array[:q])
+    R = mergesort(array[q:])
+    return merge(L, R)
+  return array
+  
+arrayEx = [12,64,23,58,34,72,12,7,29]
+res = mergesort(arrayEx)
+print(res)
