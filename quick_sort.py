@@ -16,4 +16,4 @@ def partition(array, p, r):
 
 array = [12,56,23,84,1200,64,23,75,35,109,98,117]
 quickSort(array, 0, len(array)-1)
-print(res)
+print(array)
